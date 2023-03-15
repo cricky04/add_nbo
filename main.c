@@ -11,10 +11,10 @@ int main(int argc, char *argv[])
     fread(&b, sizeof(uint32_t), 1, ftwo);
 
     // ntoh
-    a = ((a & 0x000F) << 24) ^ ((a & 0x00F0) << 8) ^ ((a & 0x0F00) >> 8) ^ ((a & 0xF000) >>24);
+    a = ((a & 0x000000FF) << 24) | ((a & 0x0000FF00) << 8) | ((a & 0x00FF0000) >> 8) | ((a & 0xFF000000) >>24);
 
-    b = ((b & 0x000F) << 24) ^ ((b & 0x00F0) << 8) ^ ((b & 0x0F00) >> 8) ^ ((b & 0xF000) >>24);
+    b = ((b & 0x000000FF) << 24) | ((b & 0x0000FF00) << 8) | ((b & 0x00FF0000) >> 8) | ((b & 0xFF000000) >>24);
 
     c = a + b;
-    printf("%u(0x%8x) + %u(0x%8x) = %u(0x%8x)", a, a, b, b,c, c);
+    printf("%u(0x%x) + %u(0x%x) = %u(0x%x)", a, a, b, b,c, c);
 }
